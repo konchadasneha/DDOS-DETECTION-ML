@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Attack and Algorithm</title>
+    <style>
+        /* Import Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        /* Background setup */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('{{ url_for('static', filename='background.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.65); /* Dark overlay */
+            z-index: 0;
+        }
+
+        /* Form container */
+        .container {
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.07); /* Transparent white */
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            color: #f0f0f0;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+            font-size: 28px;
+            color: #ffffff;
+            letter-spacing: 1.5px;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 8px;
+            font-size: 15px;
+            color: #ddd;
+            text-align: left;
+        }
+
+        input[type="file"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            margin-bottom: 15px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        select {
+            appearance: none;
+            background-image: url('https://img.icons8.com/ios/50/ffffff/chevron-down.png');
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 18px;
+        }
+
+        input[type="file"]::file-selector-button {
+            padding: 8px 15px;
+            border: none;
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(45deg, #0072ff, #00c6ff);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Select Attack Type and Algorithm</h1>
+        <form action="/process_file" method="POST" enctype="multipart/form-data">
+            <label for="file">Select a .pcap or .pcapng file:</label>
+            <input type="file" name="file" accept=".pcap,.pcapng" required>
+
+            <label for="attack">Select Attack Type:</label>
+            <select name="attack" id="attack" required>
+                <option value="icmp">ICMP Attack</option>
+                <option value="tcp">TCP Attack</option>
+                <option value="udp">UDP Attack</option>
+            </select>
+
+            <label for="algorithm">Select Algorithm:</label>
+            <select name="algorithm" id="algorithm" required>
+                <option value="svm">SVM</option>
+                <option value="knn">KNN</option>
+                <option value="linear_regression">Linear Regression</option>
+                <option value="logistic_regression">Logistic Regression</option>
+                <option value="decision_tree">Decision Tree</option>
+                <option value="random_forest">Random Forest</option>
+            </select>
+
+            <button type="submit">Next</button>
+        </form>
+    </div>
+</body>
+</html>

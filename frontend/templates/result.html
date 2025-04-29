@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            background: url('{{ url_for('static', filename='resultback.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 40px;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            animation: fadeIn 1.2s ease;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 25px;
+            color: #ffffff;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+        }
+
+        .result {
+            font-size: 28px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .result.success {
+            background-color: rgba(40, 167, 69, 0.3); /* Green translucent */
+            color: #28a745;
+        }
+
+        .result.danger {
+            background-color: rgba(217, 83, 79, 0.3); /* Red translucent */
+            color: #ff6b6b;
+        }
+
+        .info {
+            margin-top: 30px;
+            font-size: 18px;
+            line-height: 1.8;
+            color: #ddd;
+        }
+
+        .back-button {
+            margin-top: 35px;
+        }
+
+        .back-button a {
+            padding: 12px 25px;
+            text-decoration: none;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .back-button a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        {% if "No Attack" in result %}
+            <div class="result success">{{ result }}</div>
+        {% else %}
+            <div class="result danger">{{ result }}</div>
+        {% endif %}
+
+        <div class="info">
+            <p><strong>Model Accuracy:</strong> {{ accuracy }}%</p>
+            <p><strong>Total Flows Analyzed:</strong> {{ total_flows }}</p>
+            <p><strong>Number of Attacks Detected:</strong> {{ attack_count }}</p>
+        </div>
+
+        <div class="back-button">
+            <a href="/">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
+

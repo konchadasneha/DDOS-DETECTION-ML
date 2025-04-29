@@ -1,0 +1,19 @@
+Protocol,Model,Accuracy
+ICMP,Svm,99.84
+ICMP,Knn,99.99
+ICMP,Logistic Regression,99.84
+ICMP,Linear Regression,99.54
+ICMP,Decision Tree,99.99
+ICMP,Random Forest,99.99
+TCP,Svm,90.6
+TCP,Knn,99.02
+TCP,Logistic Regression,89.09
+TCP,Linear Regression,15.88
+TCP,Decision Tree,99.43
+TCP,Random Forest,99.46
+UDP,Svm,68.68
+UDP,Knn,69.33
+UDP,Logistic Regression,72.55
+UDP,Linear Regression,1.22
+UDP,Decision Tree,75.04
+UDP,Random Forest,75.14
